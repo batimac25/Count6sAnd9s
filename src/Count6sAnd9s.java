@@ -1,25 +1,21 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Count6sAnd9s {
-	public int calculateNumOf6s(List<Integer> collectionOfNumbers) {
 
-		int sum = 0;
+	public int calculateNumOf6s(List<Integer> collectionOfNumbers) {
 		int count6 = 0;
 		for (int i = 0; i < collectionOfNumbers.size(); i++) {
 			if (collectionOfNumbers.get(i) == 6) {
 				count6++;
 
 			}
-
-			// sum = sum + collectionOfNumbers.get(i);
 		}
 		return count6;
 
 	}
 
 	public int calculateNumOf9s(List<Integer> collectionOfNumbers) {
-
-		int sum = 0;
 		int count9 = 0;
 		for (int i = 0; i < collectionOfNumbers.size(); i++) {
 			if (collectionOfNumbers.get(i) == 9) {
@@ -35,43 +31,62 @@ public class Count6sAnd9s {
 
 	public int con6s(List<Integer> collectionOfNumbers) {
 
-		int conCount6 = 2;
-		for (int i = 0; i < collectionOfNumbers.size(); i++) {
-			if (collectionOfNumbers.get(i) == 6) {
-				if ((i + 1) < collectionOfNumbers.size()) {
-					if (collectionOfNumbers.get(i) == collectionOfNumbers.get(i + 1)) {
-						conCount6 = conCount6 + 1;
-					}
+		int conCount6 = 0;
+		List<Integer> g1 = new ArrayList<>();
+		g1.addAll(collectionOfNumbers);
+		int i;
+		int y = g1.size();
+		for (i = 1; i < y; i++) {
+			if (g1.get(i) == 6) {
+				if ((i + 1) < g1.size()) {
+					boolean a = g1.get(i - 1).equals(6);
+					boolean b = g1.get(i + 1).equals(6);
+					if (a || b) {
+						continue;
 
+					} else
+						g1.remove(i);
+					y--;
 				}
 			}
-
 		}
-		if (conCount6 == 1) {
-			conCount6 = 0;
+		for (int x = 0; x < g1.size(); x++) {
+			if (g1.get(x) == 6) {
+				conCount6++;
+
+			}
 		}
 		return conCount6;
 	}
 
 	public int con9s(List<Integer> collectionOfNumbers) {
 
-		int conCount9 = 2;
-		// ListIterator ls = collectionOfNumbers.listIterator();
-		for (int i = 0; i < collectionOfNumbers.size(); i++) {
-			if (collectionOfNumbers.get(i) == 9) {
-				if ((i + 1) < collectionOfNumbers.size()) {
-					if (collectionOfNumbers.get(i) == collectionOfNumbers.get(i + 1)) {
-						conCount9 = conCount9 + 1;
-					}
+		int conCount9 = 0;
+		List<Integer> g1 = new ArrayList<>();
+		g1.addAll(collectionOfNumbers);
+		int i;
+		int y = g1.size();
+		for (i = 1; i < y; i++) {
+			if (g1.get(i) == 9) {
+				if ((i + 1) < g1.size()) {
+					boolean a = g1.get(i - 1).equals(9);
+					boolean b = g1.get(i + 1).equals(9);
+					if (a || b) {
+						continue;
+
+					} else
+						g1.remove(i);
+					y--;
 				}
 			}
 		}
-		if (conCount9 == 1) {
-			conCount9 = 0;
+		for (int x = 0; x < g1.size(); x++) {
+			if (g1.get(x) == 9) {
+				conCount9++;
+
+			}
 		}
-
 		return conCount9;
-
 	}
 
 	public String NumOf6sAnd9s(int count1, int count2) {
